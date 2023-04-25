@@ -23,5 +23,5 @@ mkdir -p /etc/rancher/k3s
 
 ## To View Logs to know etcd is attched
 ``` bash
-journalctl -u k3s
+journalctl -u k3s | grep etcd
 ```
