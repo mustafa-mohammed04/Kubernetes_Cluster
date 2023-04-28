@@ -23,12 +23,15 @@ vagrant
  ```
  
  ## Make two Vagrant_Intances
- ## Control     >>>> Hostname
- ## Worker      >>>> Hostname
+ ## Create Two Directory
+ 
+ ## In First Dir
+ ``` bash
+  mkdir vm_dir1
+  mkdir vm_dir2
+ ```
  
  ``` bash
- mkdir vm_dir1
- mkdir vm_dir2
  
  cd vm_dir1
 vagrant init
@@ -67,6 +70,7 @@ vagrant up
 vagrant ssh
 ```
 
+## In Second Dir
 ``` bash
 
 cd vm_dir2
