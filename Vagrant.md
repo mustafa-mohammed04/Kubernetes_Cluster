@@ -33,11 +33,12 @@ vagrant
  
  ``` bash
  
- cd vm_dir1
+cd vm_dir1
 vagrant init
 ls     >>>> Vagrantfile
 vim Vagrantfile
-
+```
+``` ruby
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -63,11 +64,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
  
 end
-
+```
+``` bash
 vim /etc/hosts       
 192.168.56.12 server
 192.168.56.13 agent
-
+```
+``` bash
 vagrant validate  >>  to check sentiques in Vagrantfile
 vagrant up
 vagrant ssh
@@ -78,9 +81,11 @@ vagrant ssh
 
 cd vm_dir2
 vagrant init
-ls     >>>> Vagrantfile
-vim Vagrantfile
+ls     >>>> 
 
+vim Vagrantfile
+```
+``` ruby
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -106,12 +111,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   
 end
-
-
+```
+``` bash
 vim /etc/hosts       
 192.168.56.13 agent
 192.168.56.12 server
-
+```
+``` bash
 vagrant validate       >> to check sentiques in Vagrantfile
 vagrant up
 vagrant ssh
@@ -155,6 +161,8 @@ kubectl get pods -A
 ```
 
 ## To Attach k3s with etcd
+
+``` bash
 mkdir -p /etc/rancher/k3s
 vim /etc/rancher/k3s/config.yaml
 ```
@@ -165,4 +173,6 @@ cluster-init: true
 curl https://get.k3s.io | sh -s
 ```
 ## to display logs
+``` bash
 journalctl -u k3s | gerp etcd
+```
