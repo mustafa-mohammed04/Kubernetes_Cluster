@@ -46,8 +46,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
  
-  config.vm.hostname = "Control"
-  config.vm.network "private_network", ip: "192.168.56.12", hostname: true
+  config.vm.hostname = "server"
+  config.vm.network "public_network", ip: "192.168.56.12", hostname: true
 
 
   config.vm.provider :virtualbox do |vb|
@@ -64,8 +64,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  
 end
 
+vim /etc/hosts       
+192.168.56.12 server
+192.168.56.13 agent
 
-
+vagrant validate  >>  to check sentiques in Vagrantfile
 vagrant up
 vagrant ssh
 ```
@@ -86,8 +89,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   
-  config.vm.hostname = "Worker"
-  config.vm.network "private_network", ip: "192.168.56.13", hostname: true
+  config.vm.hostname = "agent"
+  config.vm.network "public_network", ip: "192.168.56.13", hostname: true
 
 
   config.vm.provider :virtualbox do |vb|
@@ -105,11 +108,61 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 
 
+vim /etc/hosts       
+192.168.56.13 agent
+192.168.56.12 server
 
-
+vagrant validate       >> to check sentiques in Vagrantfile
 vagrant up
 vagrant ssh
 
 ```
 
+## In K3s with Vagrant
+## In Server-node
+``` bash
+mkdir -p /etc/rancher/k3s
+vim /etc/rancher/k3s/config.yaml
+```
+``` yaml
+token: anubis-k3s
+node-ip: 192.168.56.12
+```
 
+``` bash
+curl https://get.k3s.io | sh -s 
+systemctl stats k3s.service
+kubectl get nodes
+kubectl get pods -A
+```
+
+## In agent-node
+``` bash
+mkdir -p /etc/rancher/k3s
+vim /etc/rancher/k3s/config.yaml
+```
+``` yaml
+server: https://192.168.56.12:6443
+token: anubis-k3s
+node-ip: 192.168.56.13
+```
+
+``` bash
+curl https://get.k3s.io | sh -s agent
+systemctl stats k3s-agent.service
+kubectl get nodes
+kubectl get pods -A
+```
+
+## To Attach k3s with etcd
+mkdir -p /etc/rancher/k3s
+vim /etc/rancher/k3s/config.yaml
+```
+``` yaml
+cluster-init: true
+```
+``` bash
+curl https://get.k3s.io | sh -s
+```
+## to display logs
+journalctl -u k3s | gerp etcd
