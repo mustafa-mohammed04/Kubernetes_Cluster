@@ -1,5 +1,5 @@
 # Kubernetes_Cluster
-## Jobs  "Something / task works and then it gets killed > 0/1 completed"
+## Job  "Something / task works and then it gets killed > 0/1 completed"
 ## To Create Job and redirect in yaml file
 ``` bash
 kubectl create job --dry-run=client -o yaml anubisjob --image=alpine:latest > anub_job.yaml
