@@ -94,3 +94,38 @@ anubis-deployment-5f987d69f4-47qxr is one of anubis-deployment
 ``` bash
 iptables --list-rules -t nat | grep anubis-deployment
 ```
+
+## To Create Service Nodeport
+
+``` bash
+kubectl create service nodeport nginx-np --tcp "8080:80" --dry-run=client -o yaml > service-np.yaml
+```
+``` yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx-nodeport
+  name: nginx-nodeport
+spec:
+  ports:
+  - name: 8080-80
+    nodePort: 31731
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-nodeport
+  type: NodePort
+status:
+  loadBalancer: {}
+
+```
+``` bash
+kubectl apply -f service-np.yaml
+kubectl get services 
+curl icanhazip.com        > ip 54.218.72.53
+curl curl http://54.218.72.53:31612        >> 31612 ex port
+```
+
