@@ -42,6 +42,7 @@ spec:
 
 ``` bash
 kubectl apply -f ingress.yaml
-kubectl get ingresskubectl describe ingress minimal-ingress
+kubectl get ingress
+kubectl describe ingress minimal-ingress
 
 ```
