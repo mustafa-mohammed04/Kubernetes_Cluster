@@ -1,4 +1,4 @@
-``` yaml
+``` json
 
 version: "3"
 services:
