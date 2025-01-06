@@ -162,16 +162,19 @@ systemctl status k3s.service
 systemctl enable k3s.service
 systemctl start k3s.service
 ```
+## Install k3s agent 
+
 ## Install k3s repo on agent-1 or worker-1 machine
+
 ``` bash
 mkdir -p /etc/rancher/k3s
 vim /etc/rancher/k3s/config.yaml
 
-``` bash
+
 token: <any-token if you want use a custom token not default like in server-node>
 node-ip: <ip of agent-1 or worker-1>
 server:https://<ip of server-node>:6443
-```
+
 curl https://get.k3s.io | sh -s agent
 systemctl status k3s-agent.service
 ```
