@@ -88,7 +88,7 @@ cd vm-worker-1
 vagrant init 
 ls "Vagrantfile is existing after vagrant init"
 vim Vagrantfile
-``` bash
+```Ruby
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
