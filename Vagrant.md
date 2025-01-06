@@ -89,28 +89,24 @@ vim Vagrantfile
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Specify the box to use
+  config.vm.box = "generic/ubuntu2204"
 
-  config.vm.box = "ubuntu/jammy64"
+  # Set the VM hostname
+  config.vm.hostname = "server"
 
+  # Configure public network with a static IP and specify the correct interface
+  config.vm.network "private_network", ip: "192.168.56.12", bridge: "wlo1"
 
-  
-  config.vm.hostname = "agent"
-  config.vm.network "public_network", ip: "192.168.56.13", hostname: true
-
-
-  config.vm.provider :virtualbox do |vb|
-
-
-   
-    vb.customize [
-      'modifyvm', :id,
-      '--memory', '2048',
-      '--cpus', '2'
-    ]
+  # Provider-specific configuration for Libvirt
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.memory = 2048         # Set memory to 2GB
+    libvirt.cpus = 2              # Allocate 2 CPUs
+    libvirt.disk_bus = "virtio"   # Use virtio for better disk performance
   end
-
-  
 end
+
+
 ```
 ``` bash
 vim /etc/hosts       
