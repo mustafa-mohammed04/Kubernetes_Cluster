@@ -55,7 +55,7 @@ cd vm-master
 vagrant init 
 ls "Vagrantfile is existing after vagrant init"
 vim Vagrantfile
-``` bash
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -75,7 +75,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.disk_bus = "virtio"   # Use virtio for better disk performance
   end
 end
-```
+
 ``` bash
 vagrant validate                ## to Check 
 vagrant up
