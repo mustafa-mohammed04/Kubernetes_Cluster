@@ -76,12 +76,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 end
 
-``` bash
+
 vagrant validate                ## to Check 
 vagrant up
 vagrant ssh
 ```
-```
+
 ## Inside in vm-worker-1 dir to create Vagrantfile
 ``` bash
 cd vm-worker-1
