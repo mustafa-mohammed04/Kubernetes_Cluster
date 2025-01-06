@@ -88,7 +88,7 @@ cd vm-worker-1
 vagrant init 
 ls "Vagrantfile is existing after vagrant init"
 vim Vagrantfile
-```Ruby
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -119,7 +119,7 @@ cd vm-worker-2
 vagrant init 
 ls "Vagrantfile is existing after vagrant init"
 vim Vagrantfile
-``` bash
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -140,9 +140,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 end
 
+
+
 vagrant validate                ## to Check 
-vagrant up
-vagrant ssh
+vagrant up                    ## to actvate vagrant
+vagrant ssh                  
 ```
 ## Install k3s repo on server machine"Note": k3s depend on SQL Lite as Key value store DATABASE if you want to change to etcd "cluster-init: true" in config.yaml
 ``` bash
