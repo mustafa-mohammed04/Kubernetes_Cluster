@@ -149,15 +149,14 @@ vagrant ssh
 ## Install k3s repo on server machine"Note": k3s depend on SQL Lite as Key value store DATABASE if you want to change to etcd "cluster-init: true" in config.yaml
 ``` bash
 mkdir -p /etc/rancher/k3s
-vim /etc/rancher/k3s/config.yaml
 cat cat /var/lib/rancher/k3s/server/token              "default token path"
+vim /etc/rancher/k3s/config.yaml
 
 
-``` bash
 token: <any-token if you want use a custom token not default>
 node-ip: <ip of server>
 cluster-init: true          ## to use ETCD DATABASE Store
-```
+
 curl https://get.k3s.io | sh -s 
 systemctl status k3s.service
 systemctl enable k3s.service
