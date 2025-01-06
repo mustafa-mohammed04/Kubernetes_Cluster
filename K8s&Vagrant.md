@@ -108,12 +108,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.disk_bus = "virtio"   # Use virtio for better disk performance
   end
 end
-```
-``` bash
+
 vagrant validate                ## to Check 
 vagrant up
 vagrant ssh
-```
 ```
 ## Inside in vm-worker-2 dir to create Vagrantfile
 ``` bash
@@ -141,12 +139,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.disk_bus = "virtio"   # Use virtio for better disk performance
   end
 end
-```
-``` bash
+
 vagrant validate                ## to Check 
 vagrant up
 vagrant ssh
-```
 ```
 ## Install k3s repo on server machine"Note": k3s depend on SQL Lite as Key value store DATABASE if you want to change to etcd "cluster-init: true" in config.yaml
 ``` bash
