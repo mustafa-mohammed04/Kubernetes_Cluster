@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "server"
 
   # Configure public network with a static IP and specify the correct interface
-  config.vm.network "private_network", ip: "192.168.56.12", bridge: "wlo1"
+  config.vm.network "private_network", ip: "<ip address>", bridge: "<interface connection>"
 
   # Provider-specific configuration for Libvirt
   config.vm.provider :libvirt do |libvirt|
@@ -76,9 +76,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 end
 ```
+``` bash
 vagrant validate                ## to Check 
 vagrant up
 vagrant ssh
+```
 ```
 ## Inside in vm-worker-1 dir to create Vagrantfile
 ``` bash
@@ -97,7 +99,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "agent-1"
 
   # Configure public network with a static IP and specify the correct interface
-  config.vm.network "private_network", ip: "<ip-address>", bridge: "<your interface>"
+  config.vm.network "private_network", ip: "<ip address>", bridge: "<interface connection>"
 
   # Provider-specific configuration for Libvirt
   config.vm.provider :libvirt do |libvirt|
@@ -107,9 +109,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 end
 ```
+``` bash
 vagrant validate                ## to Check 
 vagrant up
 vagrant ssh
+```
 ```
 ## Inside in vm-worker-2 dir to create Vagrantfile
 ``` bash
@@ -128,7 +132,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "agent-2"
 
   # Configure public network with a static IP and specify the correct interface
-  config.vm.network "private_network", ip: "<ip-address>", bridge: "<your interface>"
+  config.vm.network "private_network", ip: "<ip address>", bridge: "<interface connection>"
 
   # Provider-specific configuration for Libvirt
   config.vm.provider :libvirt do |libvirt|
@@ -138,11 +142,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 end
 ```
+``` bash
 vagrant validate                ## to Check 
 vagrant up
 vagrant ssh
 ```
-
+```
 ## Install k3s repo on server machine"Note": k3s depend on SQL Lite as Key value store DATABASE if you want to change to etcd "cluster-init: true" in config.yaml
 ``` bash
 mkdir -p /etc/rancher/k3s
