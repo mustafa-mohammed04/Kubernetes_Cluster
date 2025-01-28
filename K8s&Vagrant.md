@@ -63,10 +63,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "generic/ubuntu2204"
 
   # Set the VM hostname
-  config.vm.hostname = "server"
+  config.vm.hostname = "Master.local"
 
   # Configure public network with a static IP and specify the correct interface
-  config.vm.network "private_network", ip: "<ip address>", bridge: "<interface connection>"
+  config.vm.network "private_network", ip: "192.168.56.12", bridge: "wlo1"
 
   # Provider-specific configuration for Libvirt
   config.vm.provider :libvirt do |libvirt|
@@ -75,6 +75,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.disk_bus = "virtio"   # Use virtio for better disk performance
   end
 end
+
 
 
 vagrant validate                ## to Check 
