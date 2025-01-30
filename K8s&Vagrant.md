@@ -119,7 +119,7 @@ vagrant ssh
 cd vm-worker-2
 vagrant init 
 ls "Vagrantfile is existing after vagrant init"
-vim Vagrantfile
+vim Vagrantfile       ## Using public_ip
 
 VAGRANTFILE_API_VERSION = "2"
 
@@ -128,10 +128,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "generic/ubuntu2204"
 
   # Set the VM hostname
-  config.vm.hostname = "agent-2"
+  config.vm.hostname = "Master.local"
 
-  # Configure public network with a static IP and specify the correct interface
-  config.vm.network "private_network", ip: "<ip address>", bridge: "<interface connection>"
+  # Configure a public network with a static IP using the correct interface
+  config.vm.network "public_network",
+    ip: "192.168.1.100",
+    dev: "wlo1",   # Use your active WiFi interface
+    mode: "bridge" # Bridge mode for direct network access
 
   # Provider-specific configuration for Libvirt
   config.vm.provider :libvirt do |libvirt|
@@ -140,6 +143,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.disk_bus = "virtio"   # Use virtio for better disk performance
   end
 end
+
 
 
 
